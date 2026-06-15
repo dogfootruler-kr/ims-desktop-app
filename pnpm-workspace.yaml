@@ -1,2 +1,5 @@
+# Allow esbuild (pulled in by Vite) to run its install script — it links the
+# platform-specific binary. Recorded into the lockfile so CI's frozen install
+# honors it without an interactive `pnpm approve-builds`.
 onlyBuiltDependencies:
   - esbuild
