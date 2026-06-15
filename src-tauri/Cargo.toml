@@ -1,0 +1,26 @@
+[package]
+name = "stacks"
+version = "0.0.1"
+description = "Stacks"
+authors = ["dnk"]
+edition = "2021"
+
+[lib]
+# The desktop entry point lives in the library so it can be shared with
+# mobile targets if ever needed; `main.rs` is a thin shim over `run()`.
+name = "stacks_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api"] }
+tauri-plugin-opener = "2"
+tauri-plugin-process = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["time"] }
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-updater = "2"
