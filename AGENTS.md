@@ -84,6 +84,10 @@ Required repository secrets (Settings → Secrets and variables → Actions):
 | `APPLE_ID` / `APPLE_PASSWORD` / `APPLE_TEAM_ID` | notarization |
 
 The Apple secrets only affect the macOS jobs; Windows/Linux build without them.
+By default the workflow's Apple block is **commented out**, so macOS ships
+**unsigned**. To enable signing, set the Apple secrets and uncomment that block
+in `.github/workflows/release.yml` — but never leave the vars as empty strings
+(an empty `APPLE_CERTIFICATE` makes tauri attempt and fail a cert import).
 
 ## userEmail
 
